@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyectos - Diseño para redes</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffeee6;
+        color: #333;
+    }
+
+    header {
+        background-color: #333;
+        padding: 20px;
+        text-align: center;
+        color: white;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    /* DOS COLUMNAS FIJAS */
+    .projects-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    /* 1 columna en celular */
+    @media(max-width: 768px) {
+        .projects-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .project-card {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .project-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .project-details {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-details h2 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .project-details p {
+        line-height: 1.6;
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .gallery img {
+        width: 100%;
+        border-radius: 8px;
+        transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+    }
+
+    /* BOTÓN GENERAL ABAJO */
+    .volver-btn {
+        display: block;
+        width: fit-content;
+        margin: 40px auto;
+        padding: 12px 35px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        transition: 0.3s;
+    }
+
+    .volver-btn:hover {
+        background-color: #e07f9f;
+    }
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Proyectos Destacados</h1>
+</header>
+
+<div class="projects-container">
+
+    <!-- Proyecto 1 -->
+    <div class="project-card">
+        <img src="imagenes/belly paint 3.png" alt="Proyecto 1" class="project-image">
+        <div class="project-details">
+            <h2>Pinta Caritas MAJITO</h2>
+            <p>Mi trabajo fue crear el branding digital y el contenido visual para mis diseños de arte corporal (belly painting y pintacaritas). Me encargué de optimizar las fotos para que se vieran increíbles en redes como Instagram y Facebook. Busqué una estética moderna y atractiva para que mi trabajo artístico luciera lo más llamativo y profesional posible en línea.</p>
+            <div class="gallery">
+                <img src="imagenes/EMF MAJITO 4.png" alt="Detalle 1">
+                <img src="imagenes/TRIVIA majito.png" alt="Detalle 2">
+            </div>
+        </div>
+    </div>
+
+    <!-- Proyecto 2 -->
+    <div class="project-card">
+        <img src="imagenes/mok-up.png" alt="Proyecto 2" class="project-image">
+        <div class="project-details">
+            <h2>Branding de Pastelería</h2>
+            <p>Branding completo de una pastelería, enfocado en la creación de spots promocionales para sus campañas digitales. Diseñé toda la estética visual (dominada por los pasteles, fresas y el color rosa) bajo el nombre "Explosions of Flavor".</p>
+            <div class="gallery">
+                <img src="imagenes/oferta.png" alt="Detalle 1">
+                <img src="imagenes/WhatsApp Image 2024-11-29 at 5.47.05 PM - copia.jpeg" alt="Detalle 2">
+            </div>
+        </div>
+    </div>
+
+    <!-- Proyecto 3 -->
+    <div class="project-card">
+        <img src="imagenes/WhatsApp Image 2025-12-04 at 2.27.48 PM (1).jpeg" alt="Proyecto 3" class="project-image">
+        <div class="project-details">
+            <h2>Sudaderas GLANG</h2>
+            <p>consistió en la creación de las fotografías de producto para esta línea de sudaderas 
+                con diseños de cultura pop (como Hello Kitty). Me centré en un estilo limpio y comercial con un fondo neutro para destacar las prendas. El objetivo era mostrar claramente el diseño del estampado, la calidad de 
+                la tela y la variedad de tallas disponibles</p>
+            <div class="gallery">
+                <img src="imagenes/WhatsApp Image 2025-12-04 at 2.27.48 PM.jpeg" alt="Detalle 1">
+                <img src="imagenes/WhatsApp Image 2025-12-04 at 2.27.49 PM (1).jpeg" alt="Detalle 2">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- BOTÓN BONITO ABAJO -->
+<a href="index.html#proyectos" class="volver-btn">Volver</a>
+
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title> 
+    
+<style>
+/* 1. Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. Estilos del Menú de Navegación */
+header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    padding: 20px;
+}
+
+.centered-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 60px;
+}
+
+.centered-nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    transition: color 0.3s;
+}
+
+.centered-nav a:hover {
+    color: #ffcc00;
+}
+
+/* 3. Estilos de la Sección Hero (Video) */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-profile, .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+}
+
+/* Botón principal (general) */
+.btn {
+    display: inline-block;
+    padding: 10px 50px;
+    background-color: #ffffff38; /* Color Rosa Pastel Unificado */
+    color: white; /* Letras blancas para el botón principal */
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #e07f9f; /* Rosa un poco más oscuro */
+}
+
+/* 4. Estilos Generales de las Secciones */
+.section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #ffeee6; /* Fondo de sección muy claro */
+}
+
+.section:nth-child(even) {
+    background-color: #ffeadf; /* Fondo de sección muy claro */
+}
+
+.section h3 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* --- ESTILOS CORREGIDOS PARA EL GRID DE PROYECTOS (4 columnas) --- */
+
+.project-grid {
+    display: grid;
+    /* Divide el espacio en 3 columnas iguales (o menos en móviles) */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; 
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-card {
+    background: #ffeadf; 
+    padding: 0;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgb(150 59 11 / 72%);
+    text-align: center;
+    overflow: hidden; /* IMPORTANTE: Asegura los bordes redondeados */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Contenedor de Texto y Botón */
+.project-card-content {
+    padding: 15px 15px 25px 15px;
+    color: rgb(0, 0, 0); /* Texto blanco sobre el fondo rosa */
+}
+
+.project-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: rgb(0, 0, 0); /* Título blanco */
+}
+
+.project-card p {
+    font-size: 0.9rem;
+    color: #000000; /* Descripción blanco/gris claro */
+    margin-bottom: 20px;
+}
+
+.project-card .card-image {
+    width: 100%;
+    height: 180px; /* CLAVE: Altura unificada más grande */
+    object-fit: cover;
+    display: block;
+    margin-bottom: 0;
+}
+
+/* Estilo del botón dentro de las tarjetas de proyecto */
+.card-btn {
+    padding: 8px 30px;
+    background-color: #c87c53a3; /* Botón oscuro como en la imagen que enviaste */
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    font-weight: normal;
+}
+
+.card-btn:hover {
+    background-color: #ff935aa3;
+    transform: none; /* Desactivar la animación del botón global para este botón */
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+/* --- ESTILOS PARA LA SECCIÓN DE ICONOS DE CONTACTO (BURBUJAS) --- */
+
+.social-links-bubble {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    gap: 25px;
+    background-color: #333333; /* Fondo oscuro para resaltar los iconos */
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Reduje a 60px para un tamaño mediano */
+    height: 60px;
+    border-radius: 50%;
+    font-size: 28px;
+    color: white; /* Iconos blancos para que contrasten */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Color Rosa Pastel: #f49ac2 */
+.instagram-bubble, .gmail-bubble, .whatsapp-bubble {
+    background-color: #f49ac2; 
+}
+
+/* Animación al pasar el cursor (efecto "crecer" y sombra) */
+.social-icon:hover {
+    transform: scale(1.15) translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background-color: #e07f9f; /* Rosa un poco más oscuro */
+}
+
+/* 7. Media Queries (Responsividad) */
+@media (max-width: 900px) {
+    .project-grid {
+        /* En pantallas más pequeñas, se apilan en 2 columnas */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 600px) {
+    .project-grid {
+        /* En móviles pequeños, se apilan en 1 sola columna */
+        grid-template-columns: 1fr; 
+    }
+    .centered-nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 50px;
+    }
+    .social-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+</style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+<main>
+    <section id="inicio" class="hero">
+        
+        <div class="video-background">
+            <video autoplay loop muted playsinline>
+                <source src="flores.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+
+        <div class="hero-profile">
+            <img src="logo.jpeg" alt="Tu Foto de Perfil" class="hero-profile-pic">
+        </div>
+
+<div class="hero-content">
+    <h2>PORTAFOLIO</h2>
+    <p>| DISEÑADORA |</p>
+    
+    <div style="display:flex; gap:20px; justify-content:center;">
+        <a href="#sobre-mi" class="btn">Sobre mi</a>
+        <a href="#proyectos" class="btn">Proyectos</a>
+    </div>
+</div>
+
+    </section>
+    
+    <section id="proyectos" class="section">
+    <h3>Mis Proyectos</h3>
+    <div class="project-grid">
+        
+        <div class="project-card">
+    <img src="imagenes/POST.png" alt="Diseño de posts para redes sociales" class="card-image">
+    
+    <div class="project-card-content">
+        <h4>Diseños para redes sociales, branding y contenido visual.</h4>
+        <a href="post.html" target="_blank" class="btn card-btn">Ver</a>
+    </div>
+</div>
+
+        <div class="project-card">
+            <img src="imagenes/AUDIO.png" alt="Diseño de Spots y Banners Digitales" class="card-image">
+            <h4>Creación y postproducción de spots de audio.</h4>
+            <a href="Spot-publicitario.html" target="_blank" class="btn card-btn">Ver</a>
+        </div>
+
+        <div class="project-card">
+            <img src="imagenes/INVITACIONES Y TARJETAS.png" alt="Diseño de invitaciones digitales y físicas" class="card-image">
+            <h4>Diseños para eventos digitales o impresos.</h4>
+            <a href="invitaciones.html" target="_blank" class="btn card-btn">Ver</a>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Sección Sobre Mí -->
+<section id="sobre-mi" class="sobre-mi-section">
+  <div class="sobre-mi-wrapper">
+    <!-- Foto grande a la izquierda -->
+    <div class="sobre-mi-foto">
+      <img src="Sobre Mi.jpeg" alt="Nicole Rios" class="foto-grande">
+    </div>
+
+    <!-- Texto a la derecha -->
+    <div class="sobre-mi-texto">
+      <h2>Sobre mí</h2>
+      <p>Me llamo Lindsay Nicole Ríos Díaz. Soy una profesional en desarrollo de 18 años, recién graduada como Bachiller en Ciencias y Letras y actualmente cursando estudios universitarios.</p>
+      <p>Mi enfoque principal está en el diseño y la producción digital. He adquirido habilidades 
+        en diseño gráfico, manejo de Photoshop, edición de audio (spots) y edición básica de video, además de especializarme en la creación de invitaciones. Todo mi conocimiento en estas áreas ha sido desarrollado 
+        de forma autodidacta y proactiva, complementando mi formación con cursos y recursos externos.</p>
+        <p>Actualmente, estoy construyendo mi portafolio web personal para exhibir la calidad y el alcance de mis trabajos.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Sección Sobre Mí */
+.sobre-mi-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #fff0f4, #ffe4ea);
+}
+
+.sobre-mi-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: auto;
+  gap: 50px;
+  flex-wrap: wrap; /* Para responsividad */
+}
+
+/* Foto grande */
+.sobre-mi-foto .foto-grande {
+  width: 450px;
+  max-width: 100%;
+  border-radius: 0px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  transition: transform 0.5s ease;
+}
+
+.sobre-mi-foto .foto-grande:hover {
+  transform: scale(1.05) rotate(-1deg);
+}
+
+/* Texto */
+.sobre-mi-texto {
+  flex: 1;
+  min-width: 300px;
+}
+
+.sobre-mi-texto h2 {
+  font-size: 2.8rem;
+  color: #ce5f7e;
+  margin-bottom: 20px;
+}
+
+.sobre-mi-texto p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Botón */
+.btn-sobre-mi {
+  display: inline-block;
+  padding: 12px 36px;
+  background-color: #ce5f7e;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.btn-sobre-mi:hover {
+  transform: translateY(-4px);
+  background-color: #f49ac2;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .sobre-mi-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .sobre-mi-foto .foto-grande {
+    width: 100%;
+  }
+}
+</style>
+
+
+<section id="contacto" class="contact-section">
+    <div class="contact-wrapper">
+        <div class="contact-title">
+            <h2>Contáctame</h2>
+            <p>Estoy disponible para proyectos.</p>
+        </div>
+
+        <div class="contact-icons">
+            <a href="https://www.instagram.com/linyck.17" target="_blank" class="bubble-icon instagram-bubble">
+                <i class="fab fa-instagram"></i>
+            </a>
+           <a href="https://mail.google.com/mail/?view=cm&to=diazlindsay13@gmail.com" target="_blank" class="bubble-icon gmail-bubble">
+    <i class="fas fa-envelope"></i>
+</a>
+
+            <a href="https://wa.me/50254645206" target="_blank" class="bubble-icon whatsapp-bubble">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    <p>&copy; 2025 Nicole Rios.</p>
+    </div>
+</section>
+
+<style>
+.contact-section {
+    background: linear-gradient(355deg, #705e5e, #1e1e1e);
+    padding: 100px 20px;
+    color: white;
+    text-align: center;
+}
+.contact-wrapper {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.contact-title h2 {
+    font-size: 3rem;
+    color: #f49ac2;
+    letter-spacing: 2px;
+}
+
+.contact-title p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.contact-icons {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bubble-icon {
+    width: 135px;
+    height: 135px;
+    background-color: #f49ac2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 45px;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+    transition: all 0.35s ease;
+}
+
+.bubble-icon:hover {
+    transform: scale(1.18) translateY(-8px);
+    background-color: #e07f9f;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 700px) {
+    .bubble-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 35px;
+    }
+
+    .contact-title h2 {
+        font-size: 2.4rem;
+    }
+}
+</style>
+
+</body>
+</html>

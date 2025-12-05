@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audios Publicitarios</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffeee6;
+        color: #333;
+    }
+
+    header {
+        background-color: #333;
+        padding: 25px;
+        text-align: center;
+        color: white;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.2rem;
+    }
+
+    header p {
+        margin-top: 8px;
+        font-size: 1rem;
+        color: #ffc8d5;
+    }
+
+    .projects-container {
+        max-width: 900px;
+        margin: 35px auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .audio-card {
+        background-color: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        transition: transform 0.25s, box-shadow 0.25s;
+        border: 3px solid #ffe2da;
+    }
+
+    .audio-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    }
+
+    .audio-card h2 {
+        margin: 0;
+        color: #e07f9f;
+        font-size: 1.6rem;
+    }
+
+    .audio-card p {
+        margin: 0;
+        line-height: 1.6;
+        font-size: 1.05rem;
+    }
+
+    audio {
+        width: 100%;
+        border-radius: 15px;
+        outline: none;
+        background-color: #f8d4df;
+    }
+
+    .back-container {
+        text-align: center;
+        margin: 20px 0 40px;
+    }
+
+    .back-btn {
+        display: inline-block;
+        padding: 12px 40px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+
+    .back-btn:hover {
+        background-color: #e07f9f;
+    }
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Audios Publicitarios</h1>
+    <p>Estos audios fueron creados por mí como parte de un proyecto escolar.</p>
+</header>
+
+<div class="projects-container">
+
+    <!-- Audio 1 -->
+    <div class="audio-card">
+        <h2>Spot Nescafe</h2>
+        <p>Este audio lo realicé como parte de una actividad del colegio, aplicando técnicas básicas de grabación, edición y ambientación sonora.</p>
+        <audio controls>
+            <source src="Audios/SPOT  2.mpeg" type="audio/mpeg">
+            Tu navegador no soporta audio.
+        </audio>
+    </div>
+
+</div>
+
+<div class="back-container">
+    <a href="index.html" class="back-btn">Volver</a>
+</div>
+
+</body>
+</html>
